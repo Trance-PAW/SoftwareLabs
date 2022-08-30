@@ -1,0 +1,52 @@
+<div class="container">
+
+  <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
+  <div class="row justify-content-end mb-2">
+    <button type="button" name="button" class="btn btn-primary mr-2" [routerLink]="['/settings/create-user']">Nuevo
+      usuario</button>
+  </div>
+
+  <div class="row">
+
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Laboratorio</th>
+            <th>Correo</th>
+            <th style="width:50px"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.classroom }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <a class="btn btn-sm btn-danger float-right" href="javascript:void(0)" (click)="showDeleteDialog(user)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-warning mt-2" role="alert" *ngIf="users?.length === 0">
+        No hay usuarios registrados
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<p-dialog header="Eliminar Usuario" [(visible)]="displayDialog" [modal]="true" [responsive]="true"
+  [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [baseZIndex]="10000" *ngIf="selectedUser">
+  <p>¿Eliminar cuenta del usuario <strong>{{ selectedUser.name }}</strong>?</p>
+  <p>Laboratorio correspondiente: <strong>{{ selectedUser.classroom }}</strong></p>
+  <p>Esta acción <strong>NO</strong> puede ser revertida</p>
+  <p-footer>
+    <button type="button" class="btn btn-secondary mr-2" (click)="displayDialog=false"> Cancelar </button>
+    <button type="button" class="btn btn-danger" (click)="onDelete()"> Eliminar </button>
+  </p-footer>
+</p-dialog>

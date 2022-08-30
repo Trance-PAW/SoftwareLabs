@@ -1,0 +1,57 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['/home']">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fa fa-flask"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Lab Logbook <sup>BETA</sup></div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item active py-0" *ngIf="user?.role > 0">
+        <a class="nav-link" [routerLink]="['/home']">
+            <i class="fa fa-book px-3" aria-hidden="true"></i>
+            <span>Registro</span></a>
+    </li>
+
+    <li class="nav-item active py-0" *ngIf="user?.role != 2">
+        <a class="nav-link" [routerLink]="['/dashboard']">
+            <i class="fa fa-table px-3"></i>
+            <span>Reportes</span>
+        </a>
+    </li>
+
+    <div *ngIf="user?.role == 0">
+
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            Administrador
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link pt-0" [routerLink]="['/database']">
+                <i class="fa fa-database px-3"></i>
+                <span>Base de Datos</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link pt-0" [routerLink]="['/settings']">
+                <i class="fa fa-cogs px-3"></i>
+                <span>Configuración</span>
+            </a>
+        </li>
+
+    </div>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+        <a class="nav-link" href (click)="onSignOut()">
+            <i class="fa fa-sign-out px-3" aria-hidden="true"></i>
+            <span>Cerrar sesión</span>
+        </a>
+    </li>
+</ul>

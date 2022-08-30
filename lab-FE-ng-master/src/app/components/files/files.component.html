@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="h3 text-gray-800">Subida de Archivos</h1>
+
+  <div class="card text-center">
+    <div class="card-body p-5">
+      <div class="row justify-content-between">
+        <div class="col-lg-2">
+          <p-progressSpinner class="file-upload-icon" mode="indeterminate" *ngIf="loading"></p-progressSpinner>
+          <img class="file-upload-icon" *ngIf="!loading" src="assets/img/xls_icon.png" alt="Archivo excel">
+        </div>
+        <div class="col-lg-3">
+          <h6>Última actualización</h6>
+          <p>{{ updateDate | date: 'short' }}</p>
+        </div>
+        <div class="col"></div>
+        <div class="col-lg-3">
+          <p-fileUpload #input name="xls" styleClass="btn btn-block btn-primary" mode="basic" customUpload="true"
+            chooseLabel="Seleccionar archivo" (onSelect)="onUpload($event)" auto="true"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+          </p-fileUpload>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
